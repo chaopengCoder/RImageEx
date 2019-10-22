@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RImageEx'
-  s.version          = '1.0.3'
+  s.version          = '1.0.4'
   s.summary          = 'UIImage 扩展图片合并等'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
