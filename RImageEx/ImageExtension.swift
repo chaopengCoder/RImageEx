@@ -2,7 +2,7 @@
 //  ImageExtension.swift
 //  ImageExtension
 //
-//  Created by JingZhao_R on 2019/10/21.
+//  Created by chaopeng_coder on 2019/10/21.
 //
 
 import UIKit
@@ -24,21 +24,21 @@ extension UIImage {
     
     /// 合并两张图片为一张
     /// - Parameter backgroundImage: 背景图片
-    /// - Parameter backgroundSize: 背景图片尺寸 默认 86*86
+    /// - Parameter backgroundMaxSide: 背景图片最长边值
     /// - Parameter image: 上层图片
-    /// - Parameter imageSize: 上层图片尺寸 默认 50*50
-    public static func compare(backgroundImage: UIImage?, backgroundSize: CGSize = CGSize(width: 86, height: 86), image: UIImage?, imageSize: CGSize = CGSize(width: 50, height: 50)) -> UIImage? {
+    /// - Parameter imageMaxSide: 上层图片最长边值
+    public static func compare(backgroundImage: UIImage?, backgroundMaxSide: CGFloat = 86, image: UIImage?, imageMaxSide: CGFloat = 86) -> UIImage? {
         guard let background = backgroundImage else {
             fatalError("backgroundImage not found")
         }
-        let bgImgRef = UIImage.scale(toSize: background, size: backgroundSize)!.cgImage
+        let bgImgRef = UIImage.scale(image: background, maxSide: backgroundMaxSide)?.cgImage
         let bgImgW = CGFloat(bgImgRef!.width)
         let bgImgH = CGFloat(bgImgRef!.height)
         
         guard let image = image else {
             fatalError("image not found")
         }
-        let imgRef = UIImage.scale(toSize: image, size: imageSize)!.cgImage
+        let imgRef = UIImage.scale(image: image, maxSide: imageMaxSide)?.cgImage
         let imgW = CGFloat(imgRef!.width)
         let imgH = CGFloat(imgRef!.height)
         
@@ -55,9 +55,29 @@ extension UIImage {
     /// 修改图片尺寸
     /// - Parameter img: 图片
     /// - Parameter newsize: 新尺寸
-    public static func scale(toSize img: UIImage?, size newsize: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContext(newsize)
-        img?.draw(in: CGRect(x: 0, y: 0, width: newsize.width, height: newsize.height))
+    
+    public static func scale(image: UIImage?, maxSide: CGFloat = 50) -> UIImage? {
+        
+        guard let image = image else {
+            fatalError("需要缩放的图片源不存在")
+        }
+        
+        let imgW = image.size.width
+        let imgH = image.size.height
+        let imgScale = imgH / imgW
+        
+        var newW = maxSide
+        var newH = maxSide
+        if imgH > imgW {
+            newW = maxSide / imgScale
+        } else {
+            newH = maxSide * imgScale
+        }
+        
+        let newSize = CGSize(width: newW, height: newH)
+        
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: newW, height: newH))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return scaledImage
