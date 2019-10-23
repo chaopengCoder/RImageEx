@@ -7,7 +7,22 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+项目中包括 
+
+1. 根据颜色生成UIImage对象
+```swift
+let backgroundImage = UIImage.image(color: UIColor.red)
+```
+2. 合并两张UIImage为一张, 图片不会变形, 只需要传入两张UIImage, 以及各自的合成后的最长边尺寸, 默认背景图最长边是86, 合成在背景图上的图片最长边是50
+
+```swift
+let backgroundImage = UIImage.image(color: UIColor.red)
+let topImage = UIImage.image(color: UIColor.gray)
+// 默认大小
+let defaultCompareImage = UIImage.compare(backgroundImage: backgroundImage, image: topImage)
+// 自定义大小
+let customCompareImage = UIImage.compare(backgroundImage: backgroundImage, backgroundMaxSide: 100, image: topImage, imageMaxSide: 40)
+```
 
 ## Requirements
 
