@@ -1,0 +1,6 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'RImageEx_Example' do
+  pod 'RImageEx', :path => '../'
+end

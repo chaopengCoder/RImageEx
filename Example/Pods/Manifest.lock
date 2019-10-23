@@ -1,0 +1,16 @@
+PODS:
+  - RImageEx (1.0.5)
+
+DEPENDENCIES:
+  - RImageEx (from `../`)
+
+EXTERNAL SOURCES:
+  RImageEx:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RImageEx: 493503948b67c43753e6bdb6800ce766051a8eeb
+
+PODFILE CHECKSUM: abbe96a300f8c209f481e63999114fcee8e9d4e8
+
+COCOAPODS: 1.8.4

@@ -1,0 +1,6 @@
+framework module RImageEx {
+  umbrella header "RImageEx-umbrella.h"
+
+  export *
+  module * { export * }
+}

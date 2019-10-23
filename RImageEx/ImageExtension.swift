@@ -27,7 +27,7 @@ extension UIImage {
     /// - Parameter backgroundMaxSide: 背景图片最长边值
     /// - Parameter image: 上层图片
     /// - Parameter imageMaxSide: 上层图片最长边值
-    public static func compare(backgroundImage: UIImage?, backgroundMaxSide: CGFloat = 86, image: UIImage?, imageMaxSide: CGFloat = 86) -> UIImage? {
+    public static func compare(backgroundImage: UIImage?, backgroundMaxSide: CGFloat = 86, image: UIImage?, imageMaxSide: CGFloat = 50) -> UIImage? {
         guard let background = backgroundImage else {
             fatalError("backgroundImage not found")
         }
